@@ -41,7 +41,7 @@ const Intro = () => {
         </div>
         <div className="h-[50px]">
           <button
-            onClick={() => scrollToSection('career')}
+            onClick={() => scrollToSection('skills')}
             className="flex flex-col items-center hover:bg-black hover:text-white hover:mt-[10px] transition-all duration-500 p-[8px] rounded-full"
           >
             <ArrowDownOutlined className="text-[30px]" />
