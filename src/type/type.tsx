@@ -23,3 +23,21 @@ export type CompanyItemType = {
   team: string;
   work: string;
 };
+
+export type Skill = {
+  id: number;
+  name: string;
+  level: number;
+};
+
+export type SkillSubCategory = {
+  id: number;
+  title: string;
+  skills: Skill[];
+};
+
+export type SkillCategory = {
+  id: number;
+  title: string;
+  subCategories: SkillSubCategory[];
+};

@@ -15,7 +15,7 @@ export default function Header() {
         'contact',
         'outro',
       ];
-      const scrollY = window.scrollY + 100; // 100px offset for better UX
+      const scrollY = window.scrollY + 100;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -83,6 +83,16 @@ export default function Header() {
             >
               Story
             </button> */}
+            <button
+              onClick={() => scrollToSection('skills')}
+              className={clsx('font-semibold transition-colors duration-200', {
+                'text-black border-b-2 border-black':
+                  activeSection === 'skills',
+                'text-black hover:text-black': activeSection !== 'skills',
+              })}
+            >
+              Skills
+            </button>
 
             <button
               onClick={() => scrollToSection('career')}
@@ -96,17 +106,6 @@ export default function Header() {
             </button>
 
             {/* <button
-              onClick={() => scrollToSection('skills')}
-              className={clsx('font-semibold transition-colors duration-200', {
-                'text-blue-600 border-b-2 border-blue-600':
-                  activeSection === 'skills',
-                'text-gray-600 hover:text-blue-600': activeSection !== 'skills',
-              })}
-            >
-              Skills
-            </button>
-
-            <button
               onClick={() => scrollToSection('projects')}
               className={clsx('font-semibold transition-colors duration-200', {
                 'text-blue-600 border-b-2 border-blue-600':
