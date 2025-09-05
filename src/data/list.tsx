@@ -228,7 +228,7 @@ export const skillList: SkillCategory[] = [
         skills: [
           { id: 1, name: 'React', level: 5 },
           { id: 2, name: 'TypeScript', level: 5 },
-          { id: 3, name: 'JavaScript (ES6+)', level: 5 },
+          { id: 3, name: 'JavaScript', level: 5 },
         ],
       },
       {
@@ -245,7 +245,8 @@ export const skillList: SkillCategory[] = [
         skills: [
           { id: 6, name: 'Tailwind CSS', level: 5 },
           { id: 7, name: 'MUI', level: 4 },
-          { id: 8, name: 'CSS/SCSS', level: 4 },
+          { id: 30, name: 'ANT Design', level: 5 },
+          { id: 8, name: 'CSS/SCSS', level: 5 },
         ],
       },
       {
@@ -253,15 +254,15 @@ export const skillList: SkillCategory[] = [
         title: '빌드 & 환경',
         skills: [
           { id: 9, name: 'Vite', level: 5 },
-          { id: 10, name: 'Next.js (Prototype Experience)', level: 3 },
+          { id: 10, name: 'Next.js', level: 3 },
         ],
       },
       {
         id: 5,
         title: '기타',
         skills: [
-          { id: 11, name: 'Framer Motion (Animation)', level: 3 },
-          { id: 12, name: 'Canvas & LaTeX (문제 풀이 UI)', level: 4 },
+          { id: 11, name: 'Canvas', level: 3 },
+          { id: 12, name: 'LaTeX', level: 4 },
         ],
       },
     ],
@@ -276,72 +277,28 @@ export const skillList: SkillCategory[] = [
         skills: [
           { id: 13, name: 'GitHub', level: 5 },
           { id: 14, name: 'GitLab', level: 5 },
-          { id: 15, name: 'Jira', level: 4 },
+          { id: 15, name: 'Jira', level: 5 },
           { id: 16, name: 'Slack', level: 5 },
-          { id: 17, name: 'Figma', level: 4 },
+          { id: 17, name: 'Figma', level: 5 },
         ],
       },
       {
         id: 7,
         title: '배포 & 운영',
-        skills: [
-          { id: 18, name: 'Vercel', level: 4 },
-          { id: 19, name: 'Netlify', level: 4 },
-        ],
+        skills: [{ id: 18, name: 'Vercel', level: 2 }],
       },
       {
         id: 8,
         title: '데이터 연동',
         skills: [
           { id: 20, name: 'RESTful API', level: 5 },
-          { id: 21, name: 'react-query', level: 4 },
+          { id: 21, name: 'react-query', level: 3 },
         ],
       },
       {
         id: 9,
         title: '국제화',
         skills: [{ id: 22, name: 'i18n', level: 4 }],
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: 'Domain Experience',
-    subCategories: [
-      {
-        id: 10,
-        title: 'AI/에이전트',
-        skills: [
-          {
-            id: 23,
-            name: 'AI 에이전트 UX — 대화형 인터페이스 설계 및 구현',
-            level: 4,
-          },
-        ],
-      },
-      {
-        id: 11,
-        title: '에듀테크',
-        skills: [
-          { id: 24, name: '수학 챗봇', level: 4 },
-          { id: 25, name: 'LaTeX·Canvas 기반 문제풀이 페이지', level: 4 },
-        ],
-      },
-      {
-        id: 12,
-        title: '금융/보험',
-        skills: [
-          { id: 26, name: 'PG 관리자 사이트', level: 4 },
-          { id: 27, name: '보험 가입 프로세스', level: 4 },
-        ],
-      },
-      {
-        id: 13,
-        title: '외주/플랫폼 제작',
-        skills: [
-          { id: 28, name: '다국어 지원 사이트', level: 4 },
-          { id: 29, name: '플랫폼·기업 웹사이트 제작', level: 5 },
-        ],
       },
     ],
   },
