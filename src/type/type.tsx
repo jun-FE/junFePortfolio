@@ -41,3 +41,13 @@ export type SkillCategory = {
   title: string;
   subCategories: SkillSubCategory[];
 };
+
+export type GalleryItemType = {
+  id: number;
+  title: string;
+  images: string[];
+  description: string[];
+  link?: string;
+  githubLink?: string;
+  stack: string[];
+};

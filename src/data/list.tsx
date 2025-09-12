@@ -1,5 +1,40 @@
-import type { CareerItemWrapperType, CompanyItemType } from '@/type/type';
+import type {
+  CareerItemWrapperType,
+  CompanyItemType,
+  GalleryItemType,
+} from '@/type/type';
 import type { SkillCategory } from '@/type/type';
+
+// Import all images
+import mathMore1 from '@/assets/images/mathMore1.png';
+import mathMore2 from '@/assets/images/mathMore2.png';
+import mathMore3 from '@/assets/images/mathMore3.png';
+import mathMore4 from '@/assets/images/mathMore4.png';
+import mathMore5 from '@/assets/images/mathMore5.png';
+import mathMore6 from '@/assets/images/mathMore6.png';
+import mathMore7 from '@/assets/images/mathMore7.png';
+import mathMore8 from '@/assets/images/mathMore8.png';
+import creator1 from '@/assets/images/creator1.png';
+import creator2 from '@/assets/images/creator2.png';
+import creator3 from '@/assets/images/creator3.png';
+import creator4 from '@/assets/images/creator4.png';
+import creator5 from '@/assets/images/creator5.png';
+import creator6 from '@/assets/images/creator6.png';
+import intro1 from '@/assets/images/intro1.png';
+import intro2 from '@/assets/images/intro2.png';
+import intro3 from '@/assets/images/intro3.png';
+import intro4 from '@/assets/images/intro4.png';
+import intro5 from '@/assets/images/intro5.png';
+import intro6 from '@/assets/images/intro6.png';
+import intro7 from '@/assets/images/intro7.png';
+import intro8 from '@/assets/images/intro8.png';
+import azit1 from '@/assets/images/azit1.png';
+import azit2 from '@/assets/images/azit2.png';
+import azit3 from '@/assets/images/azit3.png';
+import azit4 from '@/assets/images/azit4.png';
+import wms1 from '@/assets/images/wms1.png';
+import wms2 from '@/assets/images/wms2.png';
+import wms3 from '@/assets/images/wms3.png';
 export const careerList: CareerItemWrapperType[] = [
   {
     careerList: [
@@ -302,4 +337,84 @@ export const skillList: SkillCategory[] = [
       },
     ],
   },
+];
+
+export const galleryList: GalleryItemType[] = [
+  {
+    id: 1,
+    title: '메쓰모어 - AI 수학 학습 서비스',
+    images: [
+      mathMore1,
+      mathMore2,
+      mathMore3,
+      mathMore4,
+      mathMore5,
+      mathMore6,
+      mathMore7,
+      mathMore8,
+    ],
+    description: [
+      '챗봇 활용 AI 수학 학습 서비스',
+      '에이전트와 대화하며 힌트 제공 및 문제 풀이 지도',
+      '실시간 채팅 UI/UX 구현',
+    ],
+    link: 'https://mathmore.ai/',
+    githubLink: '',
+    stack: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'zustand',
+      'React Query',
+      'Vite',
+      'LaTeX',
+      'Canvas',
+    ],
+  },
+  {
+    id: 5,
+    title: '물류관리 시스템',
+    images: [wms1, wms2, wms3],
+    description: ['물류 관리 시스템', '퍼블리싱 작업', '데이터 관리'],
+    link: '',
+    githubLink: '',
+    stack: ['React', 'Tailwind CSS', 'MUI'],
+  },
+  {
+    id: 4,
+    title: '쉐어 하우스 플랫폼',
+    images: [azit1, azit2, azit3, azit4],
+    description: [
+      '쉐어 하우스 매칭 플랫폼',
+      '입주자와 운영자 연결',
+      '에어비엔비 지향 디자인 적용',
+      '반응형 작업',
+    ],
+    link: '',
+    githubLink: '',
+    stack: ['React', 'MUI', 'Recoil', 'TypeScript', 'Restful API'],
+  },
+  {
+    id: 2,
+    title: '스트리머 통계 분석 플랫폼',
+    images: [creator1, creator2, creator3, creator4, creator5, creator6],
+    description: [
+      '토큰 기반 유료 콘텐츠 접근 제어',
+      '다국어 지원',
+      '다양한 차트 활용',
+    ],
+    link: '',
+    githubLink: '',
+    stack: ['React', 'TypeScript', 'MUI', 'i18n', 'Restful API', 'Recoil'],
+  },
+  {
+    id: 3,
+    title: '회사 소개 서비스',
+    images: [intro1, intro2, intro3, intro4, intro5, intro6, intro7, intro8],
+    description: ['반응형 지원', '웹 접근성 준수'],
+    link: '',
+    githubLink: '',
+    stack: ['React', 'TypeScript', 'MUI', 'Recoil', '웹접근성'],
+  },
+  // {
 ];

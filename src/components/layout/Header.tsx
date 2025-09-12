@@ -11,6 +11,7 @@ export default function Header() {
         'story',
         'career',
         'skills',
+        'gallery',
         'projects',
         'contact',
         'outro',
@@ -103,6 +104,16 @@ export default function Header() {
               })}
             >
               Career
+            </button>
+            <button
+              onClick={() => scrollToSection('gallery')}
+              className={clsx('font-semibold transition-colors duration-200', {
+                'text-black border-b-2 border-black':
+                  activeSection === 'gallery',
+                'text-black hover:text-black': activeSection !== 'gallery',
+              })}
+            >
+              Gallery
             </button>
 
             {/* <button

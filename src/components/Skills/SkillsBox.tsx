@@ -7,7 +7,7 @@ const SkillsBox = ({ skill }: { skill: SkillCategory }) => {
   ));
   return (
     <div className="w-full bg-black p-4 rounded-[10px] rounded-tl-none">
-      <div className="flex flex-col gap-4 bg-white p-4 rounded-[10px]">
+      <div className="flex flex-col gap-4 bg-white p-4 rounded-[10px]  h-[500px] overflow-y-auto">
         {SubCategoryMap}
       </div>
     </div>

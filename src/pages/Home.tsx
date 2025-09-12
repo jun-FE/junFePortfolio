@@ -2,6 +2,7 @@ import Career from '@/components/mainPage/Career';
 import Intro from '@/components/mainPage/Intro';
 import Outro from '@/components/mainPage/Outro';
 import Skills from '@/components/mainPage/Skills';
+import Gallery from '@/components/mainPage/Gallery';
 // import Story from '@/components/mainPage/Story';
 // import Projects from '@/components/mainPage/Projects';
 // import Contact from '@/components/mainPage/Contact';
@@ -11,6 +12,7 @@ export default function Home() {
       <Intro />
       <Skills />
       <Career />
+      <Gallery />
       {/* <Story /> */}
       {/* <Projects /> */}
       {/* <Contact /> */}
