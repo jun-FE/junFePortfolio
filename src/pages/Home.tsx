@@ -6,9 +6,22 @@ import Gallery from '@/components/mainPage/Gallery';
 // import Story from '@/components/mainPage/Story';
 // import Projects from '@/components/mainPage/Projects';
 // import Contact from '@/components/mainPage/Contact';
+import { useDeviceStore } from '@/stores/deviceStore';
+import clsx from 'clsx';
+
 export default function Home() {
+  const { activeDevice } = useDeviceStore();
+
   return (
-    <section className="flex flex-col items-center justify-center min-w-[1024px]">
+    <div
+      style={{
+        backgroundColor: activeDevice === 'mobile' ? '#c0c' : '#fff',
+      }}
+      className={clsx(
+        'flex flex-col items-center justify-center w-full transition-all duration-500 bg-[#c0c]',
+        activeDevice === 'mobile' && 'w-[375px]'
+      )}
+    >
       <Intro />
       <Skills />
       <Career />
@@ -17,6 +30,6 @@ export default function Home() {
       {/* <Projects /> */}
       {/* <Contact /> */}
       <Outro />
-    </section>
+    </div>
   );
 }

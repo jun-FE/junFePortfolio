@@ -1,6 +1,9 @@
 import { ArrowDownOutlined } from '@ant-design/icons';
+import { useDeviceStore } from '@/stores/deviceStore';
+import clsx from 'clsx';
 
 const Intro = () => {
+  const { activeDevice } = useDeviceStore();
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -15,23 +18,47 @@ const Intro = () => {
   return (
     <div className="h-screen w-full bg-white pt-[80px]" id="intro">
       <div className="max-w-[1024px] w-full h-full mx-auto flex flex-col gap-4 items-center justify-center">
-        <h1 className="text-[50px] font-bold">
-          안녕하세요 프론트 개발자 이영준입니다.
+        <h1
+          className={clsx(
+            'font-bold text-center',
+            activeDevice === 'mobile' ? 'text-[40px]' : 'text-[50px]'
+          )}
+        >
+          안녕하세요 {activeDevice === 'mobile' && <br />}프론트 개발자{' '}
+          {activeDevice === 'mobile' && <br />}이영준입니다
         </h1>
         <div className="py-[20px]">
           <p className="text-[10px] font-bold">
-            Frontend Developer Frontend Developer Frontend Developer Frontend
-            Developer Frontend Developer
+            Frontend Developer Frontend Developer Frontend Developer
+            {activeDevice !== 'mobile' &&
+              'Frontend Developer Frontend Developer'}
           </p>
         </div>
         <p className="text-2xl flex items-center gap-2">
           <span className="font-bold text-[30px]">리액트</span> 개발자로 경력을
-          쌓으며 <span className="font-bold text-[30px]">웹 서비스</span>를
-          개발하고 있습니다.
+          쌓으며
+          {activeDevice !== 'mobile' && (
+            <>
+              <span className="font-bold text-[30px]">웹 서비스</span>
+              <span>를 개발하고 있습니다.</span>
+            </>
+          )}
         </p>
-        <div className="text-2xl">
-          반응형 웹, 데이터 관리, 챗봇과 AI 서비스 개발등 다양한 분야를
-          경험했습니다.
+        {activeDevice === 'mobile' && (
+          <p className="text-2xl flex items-center gap-2">
+            <span className="font-bold text-[30px]">웹 서비스</span>를 개발하고
+            있습니다.
+          </p>
+        )}
+        <div
+          className={clsx(
+            activeDevice === 'mobile' ? 'text-[20px] pt-[10px]' : 'text-2xl',
+            'text-center'
+          )}
+        >
+          반응형 웹, 데이터 관리, 챗봇과 AI 서비스 개발등
+          {activeDevice === 'mobile' && <br />}
+          다양한 분야를 경험했습니다.
         </div>
         <div className="py-[20px]">
           <div className="w-[400px] h-[5px] bg-black" />

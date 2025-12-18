@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import { LaptopOutlined, MobileOutlined } from '@ant-design/icons';
+import { useDeviceStore } from '../../stores/deviceStore';
 
 export default function Header() {
   const [activeSection, setActiveSection] = useState('intro');
-
+  const { activeDevice, setActiveDevice } = useDeviceStore();
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
@@ -57,12 +59,47 @@ export default function Header() {
     >
       <div className="container h-full">
         <div className="flex items-center justify-between h-full">
-          <button
-            onClick={() => scrollToSection('intro')}
-            className="text-2xl font-bold text-gray-800 hover:text-black transition-colors"
-          >
-            Portfolio
-          </button>
+          <div className="flex items-center gap-5">
+            <button
+              onClick={() => scrollToSection('intro')}
+              className="text-2xl font-bold text-gray-800 hover:text-black transition-colors"
+            >
+              Portfolio
+            </button>
+            <div className="flex items-center gap-5 rounded-full border-2 border-gray-300 py-1 px-3 relative">
+              <div
+                className={clsx(
+                  'absolute rounded-full w-[40px] h-full bg-black border-[3px] border-white transition-all duration-300 z-0',
+                  {
+                    'left-0': activeDevice === 'mobile',
+                    'left-[36px]': activeDevice === 'laptop',
+                  }
+                )}
+              />
+              <button
+                onClick={() => setActiveDevice('mobile')}
+                className="z-10"
+              >
+                <MobileOutlined
+                  className={clsx(
+                    'transition-all duration-300',
+                    activeDevice === 'mobile' ? 'text-white' : 'text-black'
+                  )}
+                />
+              </button>
+              <button
+                onClick={() => setActiveDevice('laptop')}
+                className="z-10"
+              >
+                <LaptopOutlined
+                  className={clsx(
+                    'transition-all duration-300',
+                    activeDevice === 'laptop' ? 'text-white' : 'text-black'
+                  )}
+                />
+              </button>
+            </div>
+          </div>
           <nav className="flex items-center space-x-6">
             <button
               onClick={() => scrollToSection('intro')}

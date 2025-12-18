@@ -412,9 +412,8 @@ export const galleryList: GalleryItemType[] = [
     title: '회사 소개 서비스',
     images: [intro1, intro2, intro3, intro4, intro5, intro6, intro7, intro8],
     description: ['반응형 지원', '웹 접근성 준수'],
-    link: '',
+    link: 'https://www.sharpmusic.co.kr/',
     githubLink: '',
     stack: ['React', 'TypeScript', 'MUI', 'Recoil', '웹접근성'],
   },
-  // {
 ];
