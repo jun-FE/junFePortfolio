@@ -6,6 +6,15 @@ import type {
 import type { SkillCategory } from '@/type/type';
 
 // Import all images
+import Dashboard1 from '@/assets/images/Dashboard1.png';
+import Dashboard2 from '@/assets/images/Dashboard2.png';
+import Dashboard3 from '@/assets/images/Dashboard3.png';
+import Dashboard4 from '@/assets/images/Dashboard4.png';
+import tripTap1 from '@/assets/images/tripora1.png';
+import tripTap2 from '@/assets/images/tripora2.png';
+import tripTap3 from '@/assets/images/tripora3.png';
+import tripTap4 from '@/assets/images/tripora4.png';
+import tripTap5 from '@/assets/images/tripora5.png';
 import mathMore1 from '@/assets/images/mathMore1.png';
 import mathMore2 from '@/assets/images/mathMore2.png';
 import mathMore3 from '@/assets/images/mathMore3.png';
@@ -340,6 +349,39 @@ export const skillList: SkillCategory[] = [
 ];
 
 export const galleryList: GalleryItemType[] = [
+  {
+    id: 7,
+    title: '위젯 대시보드 (진행중)',
+    images: [Dashboard1, Dashboard2, Dashboard3, Dashboard4],
+    description: [
+      '교수자들이 원하는 형태로 위젯을 조합하여 대시보드를 구성할 수 있는 서비스',
+    ],
+    githubLink: '',
+    stack: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'zustand',
+      'React Query',
+      'Vite',
+    ],
+  },
+  {
+    id: 6,
+    title: '여행에이전트 트리포라 프로젝트',
+    images: [tripTap1, tripTap2, tripTap3, tripTap4, tripTap5],
+    description: ['에이전트와 대화하며 여행지 추천 및 일정 생성 서비스'],
+    link: 'https://tripora.ai/',
+    githubLink: '',
+    stack: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'zustand',
+      'React Query',
+      'Vite',
+    ],
+  },
   {
     id: 1,
     title: '메쓰모어 - AI 수학 학습 서비스',

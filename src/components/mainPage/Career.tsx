@@ -6,6 +6,7 @@ import { useState } from 'react';
 const Career = () => {
   const [wrapperIndex, setWrapperIndex] = useState(0);
   const [scrollY, setScrollY] = useState(0);
+
   const careerListMap = careerList.map(
     (wrapper: CareerItemWrapperType, wrapperIndex: number) => (
       <div

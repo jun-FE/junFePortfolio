@@ -1,13 +1,21 @@
 import type { SkillCategory, SkillSubCategory } from '@/type/type';
 import { StarOutlined } from '@ant-design/icons';
+import clsx from 'clsx';
+import { useDeviceStore } from '@/stores/deviceStore';
 
 const SkillsBox = ({ skill }: { skill: SkillCategory }) => {
+  const { activeDevice } = useDeviceStore();
   const SubCategoryMap = skill.subCategories.map((subCategory) => (
     <SubCategory key={subCategory.id} subCategory={subCategory} />
   ));
   return (
-    <div className="w-full bg-black p-4 rounded-[10px] rounded-tl-none">
-      <div className="flex flex-col gap-4 bg-white p-4 rounded-[10px]  h-[500px] overflow-y-auto">
+    <div className="w-full  bg-black p-4 rounded-[10px] rounded-tl-none">
+      <div
+        className={clsx(
+          'flex flex-col gap-4 bg-white p-4 rounded-[10px]  overflow-y-auto',
+          activeDevice === 'mobile' ? 'h-[calc(100vh_-_220px)]' : 'h-[500px]'
+        )}
+      >
         {SubCategoryMap}
       </div>
     </div>

@@ -16,7 +16,7 @@ const Intro = () => {
     }
   };
   return (
-    <div className="h-screen w-full bg-white pt-[80px]" id="intro">
+    <div className="h-screen w-full pt-[80px]" id="intro">
       <div className="max-w-[1024px] w-full h-full mx-auto flex flex-col gap-4 items-center justify-center">
         <h1
           className={clsx(
@@ -56,12 +56,13 @@ const Intro = () => {
             'text-center'
           )}
         >
-          반응형 웹, 데이터 관리, 챗봇과 AI 서비스 개발등
+          반응형 웹, 데이터 관리, 챗봇과 {activeDevice === 'mobile' && <br />}AI
+          서비스 개발등
           {activeDevice === 'mobile' && <br />}
           다양한 분야를 경험했습니다.
         </div>
         <div className="py-[20px]">
-          <div className="w-[400px] h-[5px] bg-black" />
+          <div className="w-[375px] h-[5px] bg-black" />
         </div>
         <div className="pb-[50px]">
           아래에서 저의 경력과 프로젝트를 확인해보세요

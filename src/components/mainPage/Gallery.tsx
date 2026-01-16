@@ -1,6 +1,8 @@
 import { galleryList } from '@/data/list';
 import type { GalleryItemType } from '@/type/type';
 import { useState, useEffect } from 'react';
+import { useDeviceStore } from '@/stores/deviceStore';
+import clsx from 'clsx';
 
 const Gallery = () => {
   return (
@@ -60,11 +62,17 @@ const GalleryItem = ({ project }: { project: GalleryItemType }) => {
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isModalOpen]);
+  const { activeDevice } = useDeviceStore();
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 border-b border-gray-200 pb-16">
+    <div
+      className={clsx(
+        'flex  gap-8 border-b border-gray-200 pb-16',
+        activeDevice === 'mobile' ? 'flex-col' : 'flex-row'
+      )}
+    >
       {/* 이미지 섹션 */}
-      <div className="lg:w-1/2">
+      <div className={clsx(activeDevice === 'mobile' ? 'w-full' : 'w-1/2')}>
         <div className="relative bg-gray-100 rounded-lg overflow-hidden">
           {/* 메인 이미지 */}
           <div
@@ -116,7 +124,12 @@ const GalleryItem = ({ project }: { project: GalleryItemType }) => {
       </div>
 
       {/* 정보 섹션 */}
-      <div className="lg:w-1/2 flex flex-col justify-between">
+      <div
+        className={clsx(
+          'flex flex-col justify-between',
+          activeDevice === 'mobile' ? 'w-full' : 'w-1/2'
+        )}
+      >
         <div>
           {/* 제목 */}
           <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
@@ -153,7 +166,10 @@ const GalleryItem = ({ project }: { project: GalleryItemType }) => {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white bg-black px-6 py-2 rounded-lg hover:text-black hover:bg-white transition-colors font-semibold"
+              className={clsx(
+                'text-white bg-black px-6 py-2 rounded-lg hover:text-black hover:bg-white transition-colors font-semibold text-center',
+                activeDevice === 'mobile' ? 'w-full' : 'w-auto'
+              )}
             >
               사이트 보기 →
             </a>
