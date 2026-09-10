@@ -1,140 +1,66 @@
-# Portfolio
+# junFePortfolio
 
-A modern, production-ready portfolio website built with React, TypeScript, and Vite.
+프론트엔드 개발자 이영준의 포트폴리오 사이트. React 19 + TypeScript + Vite + Tailwind CSS 기반의 단일 페이지 스크롤 사이트입니다.
 
-## 🚀 Tech Stack
+## 기술 스택
 
-- **Frontend**: React 19 + TypeScript
-- **Build Tool**: Vite
-- **Routing**: React Router DOM
-- **Styling**: Custom CSS with utility classes
-- **Package Manager**: Yarn
+- React 19, TypeScript
+- Vite 5
+- Tailwind CSS 3
+- Zustand (디바이스 모드 상태)
+- @ant-design/icons
 
-## 📁 Project Structure
+## 구조
 
 ```
-portfolio/
-├── public/
-│   ├── favicon.svg          # Site favicon
-│   ├── og.png              # Open Graph image (placeholder)
-│   ├── resume.pdf          # Resume download (placeholder)
-│   └── _redirects          # Netlify SPA routing
-├── src/
-│   ├── components/
-│   │   ├── Header.tsx      # Navigation header
-│   │   └── Footer.tsx      # Site footer
-│   ├── pages/
-│   │   ├── Home.tsx        # Landing page
-│   │   ├── Projects.tsx    # Projects showcase
-│   │   ├── Resume.tsx      # Resume/experience
-│   │   └── NotFound.tsx    # 404 page
-│   ├── App.tsx             # Main app component
-│   ├── main.tsx            # App entry point
-│   └── index.css           # Global styles
-├── index.html              # HTML template with SEO meta tags
-├── vercel.json             # Vercel deployment config
-└── package.json            # Dependencies and scripts
+src/
+├── App.tsx                 # 헤더 + Home, 뷰포트 동기화 훅 호출
+├── pages/Home.tsx          # 섹션 조합, PC용 모바일 미리보기 프레임
+├── components/
+│   ├── layout/Header.tsx   # 고정 헤더, 섹션 네비게이션(IntersectionObserver), 📱/💻 토글
+│   ├── mainPage/           # Intro / Skills / Career / CareerMobile / Gallery / Outro
+│   ├── Career/CareerItem.tsx
+│   └── Skills/SkillsBox.tsx
+├── hooks/
+│   ├── useViewportSync.ts     # matchMedia → deviceStore.isRealMobile
+│   └── useScrollToSection.ts  # 헤더 높이 보정 스크롤
+├── stores/deviceStore.ts   # activeDevice(laptop|mobile) + isRealMobile
+├── data/list.tsx           # 경력·회사·스킬·갤러리 데이터 (이미지 import 포함)
+├── type/type.tsx
+└── assets/images/          # 최적화된 WebP (scripts/optimize-images.mjs 출력)
 ```
 
-## 🛠️ Development
+## 디바이스 모드
 
-### Prerequisites
+- **PC**: 헤더의 📱/💻 토글로 데스크탑 레이아웃과 375px 프레임 안의 모바일 레이아웃을 전환해 볼 수 있습니다(데모 용도).
+- **실제 모바일(≤768px)**: 토글·프레임 없이 모바일 레이아웃이 전체폭으로 렌더링됩니다. `useViewportSync`가 `matchMedia`로 감지합니다.
 
-- Node.js (v18+)
-- Yarn package manager
+## 개발
 
-### Getting Started
+```bash
+yarn            # 의존성 설치
+yarn dev        # http://localhost:5173
+yarn build      # tsc -b && vite build → dist/
+yarn preview    # 빌드 결과 미리보기
+```
 
-1. **Clone the repository**
+## 이미지 추가/교체
 
-   ```bash
-   git clone <your-repo-url>
-   cd portfolio
-   ```
+원본 스크린샷은 `raw-images/`(gitignore)에 두고 아래 스크립트로 `src/assets/images/*.webp`를 생성합니다. 최대 폭 1600px, WebP 품질 80.
 
-2. **Install dependencies**
+```bash
+yarn optimize:images
+```
 
-   ```bash
-   yarn
-   ```
+그 후 `src/data/list.tsx`에서 `@/assets/images/<이름>.webp`를 import해 `galleryList`에 연결합니다.
 
-3. **Start development server**
+## 배포
 
-   ```bash
-   yarn dev
-   ```
+Vercel — `vercel.json`의 rewrite로 SPA 라우팅 처리. 빌드 커맨드 `yarn build`, 출력 `dist`.
+(Netlify를 쓸 경우 `public/_redirects`가 같은 역할을 합니다.)
 
-   Open [http://localhost:5173](http://localhost:5173) in your browser.
+### 배포 전 남은 항목
 
-### Available Scripts
-
-- `yarn dev` - Start development server
-- `yarn build` - Build for production
-- `yarn preview` - Preview production build locally
-- `yarn lint` - Run linter (placeholder for now)
-
-## 🚢 Deployment
-
-### Vercel
-
-1. Import your repository to Vercel
-2. Set build command: `yarn build`
-3. Set output directory: `dist`
-4. Deploy!
-
-The `vercel.json` file handles SPA routing automatically.
-
-### Netlify
-
-1. Connect your repository to Netlify
-2. Set build command: `yarn build`
-3. Set publish directory: `dist`
-4. Deploy!
-
-The `public/_redirects` file handles SPA routing automatically.
-
-## 🎨 Customization
-
-### Content
-
-- Update personal information in `src/pages/Home.tsx`
-- Add your projects in `src/pages/Projects.tsx`
-- Update experience in `src/pages/Resume.tsx`
-- Modify contact links in `src/components/Footer.tsx`
-
-### Styling
-
-- Global styles are in `src/index.css`
-- Uses utility-first CSS classes
-- Ready for Tailwind CSS integration
-
-### SEO
-
-- Update meta tags in `index.html`
-- Replace placeholder Open Graph image (`public/og.png`)
-- Add your actual resume PDF (`public/resume.pdf`)
-
-## 📝 Features
-
-- ✅ Responsive design
-- ✅ SEO optimized with meta tags
-- ✅ Client-side routing
-- ✅ TypeScript for type safety
-- ✅ Production-ready build
-- ✅ Deployment configurations for Vercel & Netlify
-- ✅ Clean, modern UI
-- ✅ Accessible navigation
-
-## 🔧 Next Steps
-
-1. **Add your content**: Replace placeholder text with your actual information
-2. **Style customization**: Add Tailwind CSS or your preferred styling solution
-3. **Add assets**: Replace placeholder images and PDF
-4. **SEO optimization**: Update meta tags with your information
-5. **Analytics**: Add Google Analytics or your preferred analytics solution
-6. **Performance**: Optimize images and add lazy loading
-7. **Testing**: Add unit tests with Vitest or Jest
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+- `public/og.png` — 실제 OG 이미지(1200×630)로 교체
+- `public/resume.pdf` — 실제 이력서로 교체 (현재 페이지에서 링크되진 않음)
+- `index.html`에 배포 도메인 확정 후 `og:url` 추가
