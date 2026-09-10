@@ -41,26 +41,22 @@ const GalleryItem = ({ project }: { project: GalleryItemType }) => {
     );
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    document.body.style.overflow = 'unset';
-  };
-
-  // ESC 키로 모달 닫기
+  // 모달이 열린 동안만 배경 스크롤 잠금 + ESC로 닫기 (언마운트 시에도 원복)
   useEffect(() => {
+    if (!isModalOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isModalOpen) {
-        closeModal();
-      }
+      if (e.key === 'Escape') closeModal();
     };
-
     document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener('keydown', handleEscape);
+    };
   }, [isModalOpen]);
   const { activeDevice } = useDeviceStore();
 
@@ -75,30 +71,34 @@ const GalleryItem = ({ project }: { project: GalleryItemType }) => {
       <div className={clsx(activeDevice === 'mobile' ? 'w-full' : 'w-1/2')}>
         <div className="relative bg-gray-100 rounded-lg overflow-hidden">
           {/* 메인 이미지 */}
-          <div
-            className="aspect-video bg-gray-300 cursor-pointer"
-            style={{
-              backgroundImage: `url(${project.images[currentImageIndex]})`,
-              backgroundSize: 'contain',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-            role="img"
-            aria-label={`${project.title} - 이미지 ${currentImageIndex + 1}`}
+          <button
+            type="button"
+            className="block w-full aspect-video bg-gray-300 cursor-zoom-in"
             onClick={openModal}
-          />
+            aria-label={`${project.title} 이미지 ${currentImageIndex + 1} 크게 보기`}
+          >
+            <img
+              src={project.images[currentImageIndex]}
+              alt={`${project.title} 스크린샷 ${currentImageIndex + 1}`}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-contain"
+            />
+          </button>
 
           {/* 이미지 네비게이션 (이미지가 여러 개인 경우) */}
           {project.images.length > 1 && (
             <>
               <button
                 onClick={prevImage}
+                aria-label="이전 이미지"
                 className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all"
               >
                 ←
               </button>
               <button
                 onClick={nextImage}
+                aria-label="다음 이미지"
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all"
               >
                 →
@@ -110,6 +110,8 @@ const GalleryItem = ({ project }: { project: GalleryItemType }) => {
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
+                    aria-label={`${index + 1}번 이미지`}
+                    aria-current={index === currentImageIndex}
                     className={`w-2 h-2 rounded-full transition-all ${
                       index === currentImageIndex
                         ? 'bg-white'
@@ -190,6 +192,9 @@ const GalleryItem = ({ project }: { project: GalleryItemType }) => {
       {/* 이미지 확대 모달 */}
       {isModalOpen && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${project.title} 이미지 크게 보기`}
           className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
           onClick={closeModal}
         >
@@ -200,20 +205,17 @@ const GalleryItem = ({ project }: { project: GalleryItemType }) => {
             {/* 모달 닫기 버튼 */}
             <button
               onClick={closeModal}
+              aria-label="닫기"
               className="absolute top-4 right-4 text-white text-2xl hover:text-gray-300 transition-colors z-10 bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center"
             >
               ×
             </button>
 
             {/* 확대된 이미지 */}
-            <div
-              className="w-full h-full bg-gray-800"
-              style={{
-                backgroundImage: `url(${project.images[currentImageIndex]})`,
-                backgroundSize: 'contain',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-              }}
+            <img
+              src={project.images[currentImageIndex]}
+              alt={`${project.title} 스크린샷 ${currentImageIndex + 1}`}
+              className="w-full h-full object-contain bg-gray-800"
             />
 
             {/* 모달 내 이미지 네비게이션 */}
@@ -224,6 +226,7 @@ const GalleryItem = ({ project }: { project: GalleryItemType }) => {
                     e.stopPropagation();
                     prevImage();
                   }}
+                  aria-label="이전 이미지"
                   className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-70 transition-all text-xl"
                 >
                   ←
@@ -233,6 +236,7 @@ const GalleryItem = ({ project }: { project: GalleryItemType }) => {
                     e.stopPropagation();
                     nextImage();
                   }}
+                  aria-label="다음 이미지"
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-70 transition-all text-xl"
                 >
                   →
@@ -247,6 +251,8 @@ const GalleryItem = ({ project }: { project: GalleryItemType }) => {
                         e.stopPropagation();
                         setCurrentImageIndex(index);
                       }}
+                      aria-label={`${index + 1}번 이미지`}
+                      aria-current={index === currentImageIndex}
                       className={`w-3 h-3 rounded-full transition-all ${
                         index === currentImageIndex
                           ? 'bg-white'

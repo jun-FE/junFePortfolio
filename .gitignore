@@ -119,3 +119,6 @@ dist
 .DS_Store
 
 
+
+# 최적화 전 원본 스크린샷 (scripts/optimize-images.mjs 입력)
+raw-images/
