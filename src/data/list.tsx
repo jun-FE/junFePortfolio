@@ -193,6 +193,48 @@ export const careerList: CareerItemWrapperType[] = [
   {
     careerList: [
       {
+        id: 15,
+        title: '경기연구원 채용 제출서류 자동 분류·검증 시스템',
+        description: [
+          '지원자 폴더 일괄 업로드 → AI 문서 자동 분류 → 필수서류·일관성·블라인드 위반 검증',
+          '평가위원 추천, 담당자 검토 화면, 엑셀 집계표 출력',
+          'HWP/PDF/스캔본(OCR) 텍스트 추출, EC2 배포 + GitHub Actions 자동배포',
+        ],
+        stack: [
+          'Next.js 15',
+          'React 19',
+          'TypeScript',
+          'OpenAI API',
+          'Tesseract OCR',
+          'Java (hwplib)',
+          'exceljs',
+          'AWS EC2',
+        ],
+      },
+      {
+        id: 14,
+        title: '경기연구원 주간점검회의 자료 자동 취합 시스템',
+        description: [
+          '부서별 HWP/HWPX 업로드 → AI 부서 자동 매칭 → 표지·목차 생성 → 단일 회의자료 병합',
+          '제출현황 대시보드, HWP 미리보기, 순서 지정 병합, PDF 대응판',
+          'EC2 → 사내 EKS/ArgoCD 표준 배포 전환, Supabase → RDS·S3 이관',
+        ],
+        stack: [
+          'Next.js 15',
+          'TypeScript',
+          'OpenAI API',
+          'Java (hwplib/hwpxlib)',
+          'pdf-lib',
+          'PostgreSQL',
+          'AWS S3/EKS',
+        ],
+      },
+    ],
+  },
+
+  {
+    careerList: [
+      {
         id: 12,
         title: '산들학교 교사 AI 비서 데스크탑 앱 (진행중)',
         description: [
@@ -218,16 +260,6 @@ export const careerList: CareerItemWrapperType[] = [
           '어드민 학습 데이터 페이지, 외부 삽입용 widget.js 로더',
         ],
         stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'LLM API'],
-      },
-      {
-        id: 14,
-        title: '경기연구원 주간업무보고 HWPX 자동 병합 시스템',
-        description: [
-          '부서별 HWP/HWPX 자료를 표지·목차 제외 본문만 순서대로 병합',
-          '한글 크래시·페이지 방향·표 넘침 등 포맷 호환 이슈 해결',
-          'AWS EC2 배포 (systemd, nginx)',
-        ],
-        stack: ['Next.js', 'TypeScript', 'Java (hwplib/hwpxlib)', 'AWS EC2', 'nginx'],
       },
     ],
   },
@@ -296,13 +328,21 @@ export const companyList: CompanyItemType[] = [
   {
     id: 4,
     name: '라이브데이터',
-    date: '2026 - 재직중',
+    date: '2026.06 - 2026.07',
     position: 'Frontend Developer',
     team: '개발팀',
-    work: '문서 자동화, AI 챗봇 위젯, 교사 AI 비서 데스크탑 앱',
+    work: '경기연구원 AI 도입 PoC — 채용 서류 검증, 주간회의 자료 취합 자동화',
   },
   {
     id: 5,
+    name: '라이브데이터',
+    date: '2026.08 - 재직중',
+    position: 'Frontend Developer',
+    team: '개발팀',
+    work: 'AI 챗봇 위젯, 교사 AI 비서 데스크탑 앱',
+  },
+  {
+    id: 6,
     name: '외주업무',
     date: ' - ',
     position: 'Frontend Developer',
