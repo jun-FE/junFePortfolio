@@ -62,7 +62,7 @@ const Intro = () => {
           다양한 분야를 경험했습니다.
         </div>
         <div className="py-[20px]">
-          <div className="w-[375px] h-[5px] bg-black" />
+          <div className="w-[375px] max-w-full h-[5px] bg-black" />
         </div>
         <div className="pb-[50px]">
           아래에서 저의 경력과 프로젝트를 확인해보세요

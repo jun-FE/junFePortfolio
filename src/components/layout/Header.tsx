@@ -5,7 +5,7 @@ import { useDeviceStore } from '../../stores/deviceStore';
 
 export default function Header() {
   const [activeSection, setActiveSection] = useState('intro');
-  const { activeDevice, setActiveDevice } = useDeviceStore();
+  const { activeDevice, isRealMobile, setActiveDevice } = useDeviceStore();
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
@@ -62,18 +62,22 @@ export default function Header() {
           <div className="flex items-center gap-5">
             <button
               onClick={() => scrollToSection('intro')}
-              className="text-2xl font-bold text-gray-800 hover:text-black transition-colors"
+              className={clsx(
+                'font-bold text-gray-800 hover:text-black transition-colors',
+                isRealMobile ? 'text-base' : 'text-2xl'
+              )}
             >
               Portfolio
             </button>
-            <div className="flex items-center gap-5 rounded-full border-2 border-gray-300 py-1 px-3 relative">
-              <div
-                className={clsx(
-                  'absolute rounded-full w-[40px] h-full bg-black border-[3px] border-white transition-all duration-300 z-0',
-                  {
-                    'left-0': activeDevice === 'mobile',
-                    'left-[36px]': activeDevice === 'laptop',
-                  }
+            {!isRealMobile && (
+              <div className="flex items-center gap-5 rounded-full border-2 border-gray-300 py-1 px-3 relative">
+                <div
+                  className={clsx(
+                    'absolute rounded-full w-[40px] h-full bg-black border-[3px] border-white transition-all duration-300 z-0',
+                    {
+                      'left-0': activeDevice === 'mobile',
+                      'left-[36px]': activeDevice === 'laptop',
+                    }
                 )}
               />
               <button
@@ -99,8 +103,14 @@ export default function Header() {
                 />
               </button>
             </div>
+            )}
           </div>
-          <nav className="flex items-center space-x-6">
+          <nav
+            className={clsx(
+              'flex items-center',
+              isRealMobile ? 'space-x-2 text-xs' : 'space-x-6'
+            )}
+          >
             <button
               onClick={() => scrollToSection('intro')}
               className={clsx('font-semibold transition-colors duration-200', {

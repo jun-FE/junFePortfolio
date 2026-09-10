@@ -47,7 +47,7 @@ const Outro = () => {
           {activeDevice === 'mobile' && <br />}추가로 적용될 예정입니다.
         </div>
         <div className="py-[20px]">
-          <div className="w-[400px] h-[5px] bg-black" />
+          <div className="w-[400px] max-w-full h-[5px] bg-black" />
         </div>
         <div className="pb-[50px]">잘 부탁드립니다.</div>
       </div>
