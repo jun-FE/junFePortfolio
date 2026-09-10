@@ -5,7 +5,6 @@ import { useState } from 'react';
 
 const Career = () => {
   const [wrapperIndex, setWrapperIndex] = useState(0);
-  const [scrollY, setScrollY] = useState(0);
 
   const careerListMap = careerList.map(
     (wrapper: CareerItemWrapperType, wrapperIndex: number) => (
@@ -19,11 +18,10 @@ const Career = () => {
       </div>
     )
   );
+  const lastIndex = careerList.length - 1;
   const handleWrapperIndex = (index: number) => {
-    if (index < 0) return;
-    if (index > 3) return;
+    if (index < 0 || index > lastIndex) return;
     setWrapperIndex(index);
-    setScrollY(window.innerHeight * index);
   };
 
   return (
@@ -53,8 +51,10 @@ const Career = () => {
           </div>
           <div className="flex justify-between items-center w-full px-[10px]">
             <button
-              className="flex justify-start items-center gap-2 hover:ml-[-5px] transition-all duration-500"
+              className="flex justify-start items-center gap-2 hover:ml-[-5px] transition-all duration-500 disabled:opacity-30 disabled:hover:ml-0"
               onClick={() => handleWrapperIndex(wrapperIndex - 1)}
+              disabled={wrapperIndex === 0}
+              aria-label="이전 회사"
             >
               <div>
                 <div className="w-[2px] h-[15px] rotate-45 mb-[-3px] bg-black" />
@@ -63,8 +63,10 @@ const Career = () => {
               <div>previous</div>
             </button>
             <button
-              className="flex justify-end items-center gap-2 hover:mr-[-8px] transition-all duration-500"
+              className="flex justify-end items-center gap-2 hover:mr-[-8px] transition-all duration-500 disabled:opacity-30 disabled:hover:mr-0"
               onClick={() => handleWrapperIndex(wrapperIndex + 1)}
+              disabled={wrapperIndex === lastIndex}
+              aria-label="다음 회사"
             >
               <div>next</div>
               <div>
@@ -73,25 +75,14 @@ const Career = () => {
               </div>
             </button>
           </div>
-          {/* <div className="flex justify-end items-center w-full">
-            <button
-              className="flex justify-end items-center gap-2 hover:ml-[8px] transition-all duration-500"
-              onClick={() => handleWrapperIndex(wrapperIndex + 1)}
-            >
-              <div>next</div>
-              <div>
-                <div className="w-[50px] h-[2px]  mr-[-5px] bg-black inline-block" />
-                <div className="w-[2px] h-[15px] rotate-[-45deg] mb-[-1px] bg-black inline-block" />
-              </div>
-            </button>
-          </div> */}
         </div>
         <div className="w-full h-full flex">
           <div className="w-[2px] h-full bg-black" />
           <div className="w-full relative">
             <div
-              style={{ top: `-${scrollY}px` }}
-              className="w-full h-full min-h-screen absolute left-0 transition-all duration-500"
+              // 각 wrapper가 h-screen이라 인덱스×100%만큼 올리면 리사이즈에도 정확히 맞는다
+              style={{ transform: `translateY(-${wrapperIndex * 100}%)` }}
+              className="w-full h-full min-h-screen absolute left-0 top-0 transition-transform duration-500"
             >
               {careerListMap}
             </div>

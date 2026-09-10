@@ -1,54 +1,39 @@
 import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { LaptopOutlined, MobileOutlined } from '@ant-design/icons';
-import { useDeviceStore } from '../../stores/deviceStore';
+import { useDeviceStore } from '@/stores/deviceStore';
+import { useScrollToSection } from '@/hooks/useScrollToSection';
+
+const SECTION_IDS = ['intro', 'skills', 'career', 'gallery', 'outro'];
 
 export default function Header() {
   const [activeSection, setActiveSection] = useState('intro');
   const { activeDevice, isRealMobile, setActiveDevice } = useDeviceStore();
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = [
-        'intro',
-        'story',
-        'career',
-        'skills',
-        'gallery',
-        'projects',
-        'contact',
-        'outro',
-      ];
-      const scrollY = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollY >= offsetTop && scrollY < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
+    // 실제로 렌더링된 섹션만 관찰 (story/projects/contact 등은 현재 비활성)
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el !== null
+    );
+    // 헤더 아래(100px)부터 뷰포트 중간까지의 띠와 겹치는 섹션들 중 가장 위 섹션을 활성으로.
+    // 띠 아래쪽을 %로 두면 창 높이가 작아도 띠가 뒤집히지 않고, 섹션 경계가 띠 안에 있을 때도
+    // 항상 위쪽(= 기준선을 지나는) 섹션 하나가 결정된다.
+    const intersecting = new Set<string>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) intersecting.add(entry.target.id);
+          else intersecting.delete(entry.target.id);
         }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-
-    return () => window.removeEventListener('scroll', handleScroll);
+        const active = SECTION_IDS.find((id) => intersecting.has(id));
+        if (active) setActiveSection(active);
+      },
+      { rootMargin: '-100px 0px -50% 0px', threshold: 0 }
+    );
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const targetPosition = element.offsetTop;
-
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const scrollToSection = useScrollToSection();
 
   return (
     <header

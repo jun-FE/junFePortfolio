@@ -1,20 +1,11 @@
 import { ArrowDownOutlined } from '@ant-design/icons';
 import { useDeviceStore } from '@/stores/deviceStore';
 import clsx from 'clsx';
+import { useScrollToSection } from '@/hooks/useScrollToSection';
 
 const Intro = () => {
   const { activeDevice } = useDeviceStore();
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const targetPosition = element.offsetTop;
-
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const scrollToSection = useScrollToSection();
   return (
     <div className="h-screen w-full pt-[80px]" id="intro">
       <div className="max-w-[1024px] w-full h-full mx-auto flex flex-col gap-4 items-center justify-center">
