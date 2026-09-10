@@ -130,7 +130,7 @@ export const careerList: CareerItemWrapperType[] = [
     careerList: [
       {
         id: 6,
-        title: '여행에이전트 트립텝 프로젝트 (진행중)',
+        title: '여행에이전트 트립텝 프로젝트',
         description: [
           '채팅기반 여행지 추천 및 일정생성 프로젝트',
           '에이전트 대화형 UX 제작',
@@ -193,6 +193,49 @@ export const careerList: CareerItemWrapperType[] = [
   {
     careerList: [
       {
+        id: 12,
+        title: '산들학교 교사 AI 비서 데스크탑 앱 (진행중)',
+        description: [
+          '학교 공문·학사일정·시간표를 관리하고 담당 교사에게 데스크탑 알림을 보내는 Electron 앱',
+          '디자이너 목업 기반 UI 구현 — 캘린더, 시간표(교환·보강 요청), 학생명부, 학사일정 업로드 등 8개 도메인 FE 개발',
+          'FastAPI 백엔드 API 연동 및 API 보완 요청 정리, 테스트 시나리오 시트 작성·검증',
+          'macOS(dmg)/Windows(exe) 빌드·배포, 설치 오류 트러블슈팅',
+        ],
+        stack: [
+          'Next.js',
+          'Electron',
+          'TypeScript',
+          'Tailwind CSS',
+          'zustand',
+          'electron-builder',
+        ],
+      },
+      {
+        id: 13,
+        title: 'AI 챗봇 위젯 서비스',
+        description: [
+          '랜딩·어드민·위젯 3개 저장소 구조 정리 및 기능 범위 재정의, 단계별 개발 계획 수립',
+          'llmwiki 기반 지식 검색 채택, 에이전트 루프로 검색 품질 개선',
+          '어드민 학습 데이터 페이지 재설계, 외부 사이트 삽입용 widget.js 로더 + 위젯 설정 연동',
+        ],
+        stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'LLM API'],
+      },
+      {
+        id: 14,
+        title: '경기연구원 주간업무보고 HWPX 자동 병합 시스템',
+        description: [
+          '부서별 HWP/HWPX 회의자료를 업로드하면 표지·목차를 제외한 본문만 순서대로 병합해 한 파일로 생성',
+          '한글(Hancom) 크래시 케이스 디버깅 — 페이지 방향, 표 넘침, 이미지 깨짐 등 포맷 호환 이슈 해결',
+          'AWS EC2 배포 (systemd 서비스, nginx 프록시)',
+        ],
+        stack: ['Next.js', 'TypeScript', 'Java (hwplib/hwpxlib)', 'AWS EC2', 'nginx'],
+      },
+    ],
+  },
+
+  {
+    careerList: [
+      {
         id: 9,
         title: '물류 관리 시스템 퍼블리싱작업',
         description: ['리액트 기반 페이지 제작'],
@@ -249,10 +292,18 @@ export const companyList: CompanyItemType[] = [
     date: '2023.09 - 재직중',
     position: 'Frontend Developer',
     team: '개발팀',
-    work: '플랫폼 제작, 외주 제작',
+    work: 'AI 여행 에이전트, AI 수학 학습 서비스, AI 튜터 외주 개발',
   },
   {
     id: 4,
+    name: '라이브데이터',
+    date: '2026 - 재직중',
+    position: 'Frontend Developer',
+    team: '개발팀',
+    work: '문서 자동화, AI 챗봇 위젯, 교사 AI 비서 데스크탑 앱',
+  },
+  {
+    id: 5,
     name: '외주업무',
     date: ' - ',
     position: 'Frontend Developer',

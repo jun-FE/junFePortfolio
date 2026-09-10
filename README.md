@@ -63,4 +63,4 @@ Vercel — `vercel.json`의 rewrite로 SPA 라우팅 처리. 빌드 커맨드 `y
 
 - `public/og.png` — 실제 OG 이미지(1200×630)로 교체
 - `public/resume.pdf` — 실제 이력서로 교체 (현재 페이지에서 링크되진 않음)
-- `index.html`에 배포 도메인 확정 후 `og:url` 추가
+- 배포: https://jun-fe-portfolio.vercel.app/
